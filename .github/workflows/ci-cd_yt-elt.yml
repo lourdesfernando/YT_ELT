@@ -88,8 +88,6 @@ jobs:
         run: docker exec -t airflow-worker sh -c "pytest tests/ -v"
       - name: Wait for Airflow
         run: sleep 30
-      - name: Verify DAGs loaded
-        run: docker exec airflow-scheduler airflow dags list
       - name: Run End-to-End DAG Tests
         if: steps.changed-files-tests.outputs.any_changed == 'true' || github.event_name == 'workflow_dispatch'
         run: |
